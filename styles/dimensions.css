@@ -1,0 +1,142 @@
+.welcome-screen img {
+  margin-top: -170px;
+  margin-bottom: 94px;
+}
+
+.input-name input {
+  height: 54px;
+  width: 261px;
+  margin-block: 15px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+}
+
+.enter-button button {
+  height: 45px;
+  width: 109px;
+  border-radius: 9px;
+  background-color: #e7e7e7;
+  border: 2px solid #e7e7e7;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: #696969;
+}
+
+.logo img {
+  height: 53px;
+  width: 75px;
+}
+
+.main-menu-button button {
+  font-size: 42px;
+  margin-top: 10px;
+  color: #000000;
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
+.menu-title-space p {
+  width: 200px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.contact-selection button {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin-inline: 8px;
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
+.contact-selection .checkmark {
+  right: 0px;
+  font-size: 15px;
+  color: #28bb25;
+  position: absolute;
+}
+
+.checkmark-hide {
+  opacity: 0;
+}
+
+nav ion-icon {
+  --ionicon-stroke-width: 100px;
+}
+
+.send-button button {
+  margin-top: 5px;
+  font-size: 32px;
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
+.input-text input {
+  width: 100%;
+  height: 35px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: #000000;
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
+input:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+/* Mensage text formating */
+
+.time-sent {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #aaaaaa;
+  margin-inline: 8px;
+}
+
+.user-mensage {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+}
