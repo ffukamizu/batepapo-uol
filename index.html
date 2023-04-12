@@ -22,8 +22,8 @@
     </header>
     <aside class="welcome-screen">
       <div><img src="images/logo.png" alt="Batepapo UOL" /></div>
-      <div class="input-name"><input type="text" placeholder="Digite seu nome" /></div>
-      <div class="enter-button"><button>Entrar</button></div>
+      <div class="input-name"><input id="user-name" type="text" placeholder="Digite seu nome" /></div>
+      <div class="enter-button"><button onclick="welcomeScreen()">Entrar</button></div>
     </aside>
     <aside class="backdrop">
       <div class="side-menu-blank" onclick="sideMenu()"></div>
@@ -71,7 +71,7 @@
       <div class="bottom-spacer"></div>
     </main>
     <footer class="bottom-text-box">
-      <div class="input-text"><input type="text" placeholder="Escreva aqui..." /></div>
+      <div class="input-text"><input id="user-text" type="text" placeholder="Escreva aqui..." /></div>
       <div class="send-button">
         <button><ion-icon name="paper-plane-outline"></ion-icon></button>
       </div>

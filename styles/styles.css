@@ -6,16 +6,16 @@
   height: 100%;
   width: 100%;
   background-color: #ffffff;
-  display: none;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   position: fixed;
+  display: flex;
   z-index: 1;
 }
 
 .welcome-screen-display {
-  display: flex;
+  display: none;
 }
 
 .top-header {
