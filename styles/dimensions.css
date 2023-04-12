@@ -120,7 +120,7 @@ input:focus {
   font-style: italic;
 }
 
-/* Mensage text formating */
+/* message text formating */
 
 .time-sent {
   font-family: "Roboto";
@@ -132,7 +132,7 @@ input:focus {
   margin-inline: 8px;
 }
 
-.user-mensage {
+.user-message {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;

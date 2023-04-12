@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-.mensage-container {
+.message-container {
   display: block;
 }
 
@@ -109,13 +109,13 @@
   align-items: center;
 }
 
-/* Mensage containers */
+/* message containers */
 
-.public-mensage {
+.public-message {
   background-color: #ffffff;
 }
 
-.private-mensage {
+.private-message {
   background-color: #ffdede;
 }
 
@@ -123,8 +123,8 @@
   background-color: #dcdcdc;
 }
 
-.public-mensage,
-.private-mensage,
+.public-message,
+.private-message,
 .user-state {
   min-height: 40px;
   height: 100%;
