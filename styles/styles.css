@@ -93,6 +93,13 @@
   position: absolute;
 }
 
+.side-menu-blank {
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  position: absolute;
+}
+
 .menu-title-space {
   height: 84px;
   display: flex;

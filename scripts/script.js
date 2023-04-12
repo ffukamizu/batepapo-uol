@@ -1,3 +1,4 @@
-//import key from token.js
-axios.defaults.headers.common["Authorization"] = token;
-console.log(axios);
+function sideMenu() {
+  document.querySelector(".backdrop").classList.toggle("backdrop-display");
+}
+
