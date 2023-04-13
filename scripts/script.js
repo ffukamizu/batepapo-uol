@@ -1,4 +1,4 @@
-let userName, lastArray;
+let userName, lastArray, statusUpdate, msgUpdate;
 
 const userNameAdress = document.getElementById("user-name");
 const messageAdress = document.getElementById("user-text");
@@ -43,8 +43,7 @@ function logIn() {
   promise.then(welcomeScreen);
   promise.then(userStatus);
   promise.then(messageHistory);
-  promise.then(setInterval(userStatus, 4000));
-  promise.then(setInterval(messageHistoryUpdate, 3000));
+  promise.then(intervalUpdates);
 
   promise.catch(welcomeScreenError);
 
@@ -60,7 +59,17 @@ function userStatus() {
 
   const promise = axios.post(apiStatus, name);
 
-  promise.catch();
+  promise.catch(intervalCancel);
+}
+
+function intervalUpdates() {
+  statusUpdate = setInterval(userStatus, 4000);
+  msgUpdate = setInterval(messageHistoryUpdate, 3000);
+}
+
+function intervalCancel() {
+  clearInterval(statusUpdate);
+  clearInterval(msgUpdate);
 }
 
 function messageUser() {
