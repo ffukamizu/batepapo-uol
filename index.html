@@ -17,13 +17,13 @@
     <header class="top-header">
       <div class="logo"><img src="images/logo.png" alt="Batepapo UOL" /></div>
       <div class="main-menu-button">
-        <button onclick="sideMenu()"><ion-icon name="people"></ion-icon></button>
+        <button onclick="sideMenu()" data-test="open-participants"><ion-icon name="people"></ion-icon></button>
       </div>
     </header>
     <aside class="welcome-screen">
       <div><img src="images/logo.png" alt="Batepapo UOL" /></div>
-      <div class="input-name"><input id="user-name" type="text" placeholder="Digite seu nome" /></div>
-      <div class="enter-button"><button id="user-name-button" onclick="logIn()">Entrar</button></div>
+      <div class="input-name"><input id="user-name" type="text" placeholder="Digite seu nome" data-test="input-name"/></div>
+      <div class="enter-button"><button id="user-name-button" onclick="logIn()" data-test="send-name">Entrar</button></div>
       <div class="error-message"><p>Nome de usuário já existe, insira outro.</p></div>
     </aside>
     <aside class="backdrop">
@@ -33,7 +33,7 @@
           <p>Escolha um contato para enviar mensagem:</p>
         </div>
         <nav class="contact-selection">
-          <div>
+          <div  data-test="all">
             <ion-icon name="people"></ion-icon><button>Todos</button>
             <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
           </div>
@@ -42,13 +42,13 @@
           <p>Escolha a visibilidade:</p>
         </div>
         <nav id="test" class="contact-selection">
-          <div>
+          <div data-test="public">
             <ion-icon name="lock-open"></ion-icon><button>Público</button>
-            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
           </div>
-          <div>
+          <div data-test="private">
             <ion-icon name="lock-closed"></ion-icon><button>Reservadamente</button>
-            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
           </div>
         </nav>
       </div>
@@ -60,9 +60,9 @@
       <div class="bottom-spacer"></div>
     </main>
     <footer class="bottom-text-box">
-      <div class="input-text"><input id="user-text" type="text" placeholder="Escreva aqui..." /></div>
+      <div class="input-text"><input id="user-text" type="text" placeholder="Escreva aqui..." data-test="input-message"/></div>
       <div class="send-button">
-        <button id="send-text-button" onclick="messageUser()"><ion-icon name="paper-plane-outline"></ion-icon></button>
+        <button id="send-text-button" onclick="messageUser()" data-test="send-message"><ion-icon name="paper-plane-outline"></ion-icon></button>
       </div>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

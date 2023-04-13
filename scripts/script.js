@@ -103,14 +103,14 @@ function messageHistoryUpdate() {
     promise.catch(console.error());
 
     function getLastMessageContent(array) {
-      const currentArray = array.data
+      const currentArray = array.data;
 
       let difference = currentArray.filter((x) => !lastArray.includes(x));
 
       if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
         for (const entry of difference) {
           element.innerHTML += `
-            <section class="${entry.type}">
+            <section class="${entry.type}" data-test="message">
               <p class="time-sent">${entry.time}</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
@@ -123,9 +123,9 @@ function messageHistoryUpdate() {
       } else {
         null;
       }
-    }
 
-    element.lastElementChild.scrollIntoView();
+      element.lastElementChild.scrollIntoView();
+    }
   }
 }
 
@@ -147,5 +147,5 @@ messageAdress.addEventListener("keypress", function (event) {
 
 messageHistory();
 
-setInterval(userStatus, 5000);
+setInterval(userStatus, 4000);
 setInterval(messageHistoryUpdate, 3000);
