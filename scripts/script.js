@@ -58,7 +58,9 @@ function resetLogIn() {
 function userStatus() {
   const name = { name: userName };
 
-  axios.post(apiStatus, name);
+  const promise = axios.post(apiStatus, name);
+
+  promise.catch();
 }
 
 function messageUser() {
