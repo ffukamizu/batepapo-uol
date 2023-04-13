@@ -91,7 +91,7 @@ function messageHistory() {
 
   promise.then(getMessageContent);
 
-  promise.catch();
+  promise.catch(console.log(promise));
 
   function getMessageContent(array) {
     lastArray = array.data;
@@ -116,7 +116,7 @@ function messageHistoryUpdate() {
 
   promise.then(getLastMessageContent);
 
-  promise.catch();
+  promise.catch(console.log(promise));
 
   function getLastMessageContent(array) {
     const currentArray = array.data;
