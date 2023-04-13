@@ -117,7 +117,7 @@ function messageHistoryUpdate() {
   function getLastMessageContent(array) {
     const currentArray = array.data;
 
-    const difference = currentArray.filter((n) => !lastArray.includes(n));
+    const difference = currentArray.splice(99, 100);
 
     if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
       for (const entry of difference) {
