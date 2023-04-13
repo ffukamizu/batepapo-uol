@@ -15,7 +15,7 @@ class Message {
   sendToServer() {
     const promise = axios.post(apiMsg, this);
 
-    promise.catch(console.error());
+    promise.catch(resetLogIn);
   }
 }
 
@@ -40,9 +40,16 @@ function logIn() {
 
   promise.then(welcomeScreen);
   promise.then(userStatus);
+  promise.then(messageHistory);
+  promise.then(setInterval(userStatus, 4000))
+  promise.then(setInterval(messageHistoryUpdate, 3000));
   promise.catch(welcomeScreenError);
 
   document.getElementById("user-name").value = "";
+}
+
+function resetLogIn() {
+  window.location.reload();
 }
 
 function userStatus() {
@@ -81,7 +88,7 @@ function messageHistory() {
 
     for (const entry of array.data) {
       element.innerHTML += `
-      <section class="${entry.type}">
+            <section class="${entry.type}">
               <p class="time-sent">${entry.time}</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
@@ -117,8 +124,6 @@ function messageHistoryUpdate() {
             `;
 
           lastArray = currentArray;
-
-          console.log("repetindo");
         }
       } else {
         null;
@@ -144,8 +149,3 @@ messageAdress.addEventListener("keypress", function (event) {
     document.getElementById("send-text-button").click();
   }
 });
-
-messageHistory();
-
-setInterval(userStatus, 4000);
-setInterval(messageHistoryUpdate, 3000);
