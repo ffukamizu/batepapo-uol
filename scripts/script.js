@@ -106,4 +106,4 @@ messageAdress.addEventListener("keypress", function (event) {
 });
 
 setInterval(userStatus, 5000);
-setInterval(messageHistory, 10000);
+setInterval(messageHistory, 3000);
