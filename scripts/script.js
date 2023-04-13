@@ -120,8 +120,6 @@ function messageHistoryUpdate() {
     const difference = currentArray.filter((n) => !lastArray.includes(n));
 
     if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
-      console.log(difference);
-
       for (const entry of difference) {
         element.innerHTML += `
             <section class="${entry.type}" data-test="message">
