@@ -15,6 +15,8 @@ class Message {
   sendToServer() {
     const promise = axios.post(apiMsg, this);
 
+    promise.then(messageHistoryUpdate);
+
     promise.catch(resetLogIn);
   }
 }
@@ -41,8 +43,9 @@ function logIn() {
   promise.then(welcomeScreen);
   promise.then(userStatus);
   promise.then(messageHistory);
-  promise.then(setInterval(userStatus, 4000))
+  promise.then(setInterval(userStatus, 4000));
   promise.then(setInterval(messageHistoryUpdate, 3000));
+
   promise.catch(welcomeScreenError);
 
   document.getElementById("user-name").value = "";
@@ -53,15 +56,9 @@ function resetLogIn() {
 }
 
 function userStatus() {
-  if (userName !== undefined) {
-    const name = { name: userName };
+  const name = { name: userName };
 
-    const promise = axios.post(apiStatus, name);
-
-    promise.catch(console.error());
-  } else {
-    null;
-  }
+  axios.post(apiStatus, name);
 }
 
 function messageUser() {
@@ -81,8 +78,6 @@ function messageHistory() {
 
   promise.then(getMessageContent);
 
-  promise.catch(console.error());
-
   function getMessageContent(array) {
     lastArray = array.data;
 
@@ -100,37 +95,33 @@ function messageHistory() {
 }
 
 function messageHistoryUpdate() {
-  if (userName !== undefined) {
-    const element = document.querySelector(".message-container");
+  const element = document.querySelector(".message-container");
 
-    const promise = axios.get(apiMsg);
+  const promise = axios.get(apiMsg);
 
-    promise.then(getLastMessageContent);
+  promise.then(getLastMessageContent);
 
-    promise.catch(console.error());
+  function getLastMessageContent(array) {
+    const currentArray = array.data;
 
-    function getLastMessageContent(array) {
-      const currentArray = array.data;
+    const difference = currentArray.filter((x) => !lastArray.includes(x));
 
-      let difference = currentArray.filter((x) => !lastArray.includes(x));
-
-      if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
-        for (const entry of difference) {
-          element.innerHTML += `
+    if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
+      for (const entry of difference) {
+        element.innerHTML += `
             <section class="${entry.type}" data-test="message">
               <p class="time-sent">${entry.time}</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
             `;
 
-          lastArray = currentArray;
-        }
-      } else {
-        null;
+        lastArray = currentArray;
       }
-
-      element.lastElementChild.scrollIntoView();
+    } else {
+      null;
     }
+
+    element.lastElementChild.scrollIntoView();
   }
 }
 
