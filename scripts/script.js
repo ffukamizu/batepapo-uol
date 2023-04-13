@@ -97,7 +97,7 @@ function messageHistory() {
     for (const entry of array.data) {
       element.innerHTML += `
             <section class="${entry.type}">
-              <p class="time-sent">${entry.time}</p>
+              <p class="time-sent">(${entry.time})</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
             `;
@@ -125,13 +125,13 @@ function messageHistoryUpdate() {
       for (const entry of difference) {
         element.innerHTML += `
             <section class="${entry.type}" data-test="message">
-              <p class="time-sent">${entry.time}</p>
+              <p class="time-sent">(${entry.time})</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
             `;
-
-        lastArray = currentArray;
       }
+
+      lastArray = currentArray;
     } else {
       null;
     }
