@@ -13,7 +13,7 @@
   display: flex;
   z-index: 1;
 }
-
+ 
 .welcome-screen-display {
   display: none;
 }
@@ -118,21 +118,21 @@
 
 /* message containers */
 
-.public-message {
+.message {
   background-color: #ffffff;
 }
 
-.private-message {
+.private_message {
   background-color: #ffdede;
 }
 
-.user-state {
+.status {
   background-color: #dcdcdc;
 }
 
-.public-message,
-.private-message,
-.user-state {
+.message,
+.private_message,
+.status {
   min-height: 40px;
   height: 100%;
   width: 100%;

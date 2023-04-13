@@ -23,7 +23,8 @@
     <aside class="welcome-screen">
       <div><img src="images/logo.png" alt="Batepapo UOL" /></div>
       <div class="input-name"><input id="user-name" type="text" placeholder="Digite seu nome" /></div>
-      <div class="enter-button"><button onclick="welcomeScreen()">Entrar</button></div>
+      <div class="enter-button"><button id="user-name-button" onclick="logIn()">Entrar</button></div>
+      <div class="error-message"><p>Nome de usuário já existe, insira outro.</p></div>
     </aside>
     <aside class="backdrop">
       <div class="side-menu-blank" onclick="sideMenu()"></div>
@@ -55,25 +56,13 @@
     <main>
       <div class="top-spacer"></div>
       <article class="message-container">
-        <section class="user-state">
-          <p class="time-sent"></p>
-          <p class="user-message"></p>
-        </section>
-        <section class="public-message">
-          <p class="time-sent"></p>
-          <p class="user-message"></p>
-        </section>
-        <section class="private-message">
-          <p class="time-sent"></p>
-          <p class="user-message"></p>
-        </section>
       </article>
       <div class="bottom-spacer"></div>
     </main>
     <footer class="bottom-text-box">
       <div class="input-text"><input id="user-text" type="text" placeholder="Escreva aqui..." /></div>
       <div class="send-button">
-        <button><ion-icon name="paper-plane-outline"></ion-icon></button>
+        <button id="send-text-button" onclick="messageUser()"><ion-icon name="paper-plane-outline"></ion-icon></button>
       </div>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

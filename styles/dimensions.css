@@ -19,6 +19,23 @@
   border-radius: 4px;
 }
 
+.error-message {
+  margin-top: 200px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  color: #e99393;
+  position: fixed;
+  display: none;
+}
+
+.error-message-display {
+  display: flex;
+}
+
 .enter-button button {
   height: 45px;
   width: 109px;
