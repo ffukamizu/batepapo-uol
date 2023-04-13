@@ -1,4 +1,4 @@
-let userName;
+let userName, lastArray;
 
 const userNameAdress = document.getElementById("user-name");
 const messageAdress = document.getElementById("user-text");
@@ -19,6 +19,18 @@ class Message {
   }
 }
 
+function welcomeScreen() {
+  document.querySelector(".welcome-screen").classList.add("welcome-screen-display");
+}
+
+function welcomeScreenError() {
+  document.querySelector(".error-message").classList.add("error-message-display");
+}
+
+function sideMenu() {
+  document.querySelector(".backdrop").classList.toggle("backdrop-display");
+}
+
 function logIn() {
   userName = String(userNameAdress.value);
 
@@ -31,18 +43,6 @@ function logIn() {
   promise.catch(welcomeScreenError);
 
   document.getElementById("user-name").value = "";
-}
-
-function welcomeScreen() {
-  document.querySelector(".welcome-screen").classList.add("welcome-screen-display");
-}
-
-function welcomeScreenError() {
-  document.querySelector(".error-message").classList.add("error-message-display");
-}
-
-function sideMenu() {
-  document.querySelector(".backdrop").classList.toggle("backdrop-display");
 }
 
 function userStatus() {
@@ -68,24 +68,64 @@ function messageUser() {
 }
 
 function messageHistory() {
+  const element = document.querySelector(".message-container");
+
+  const promise = axios.get(apiMsg);
+
+  promise.then(getMessageContent);
+
+  promise.catch(console.error());
+
+  function getMessageContent(array) {
+    lastArray = array.data;
+
+    for (const entry of array.data) {
+      element.innerHTML += `
+      <section class="${entry.type}">
+              <p class="time-sent">${entry.time}</p>
+              <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
+            </section>
+            `;
+    }
+
+    element.lastElementChild.scrollIntoView();
+  }
+}
+
+function messageHistoryUpdate() {
   if (userName !== undefined) {
+    const element = document.querySelector(".message-container");
+
     const promise = axios.get(apiMsg);
 
-    promise.then(getMessageContent);
+    promise.then(getLastMessageContent);
 
-    function getMessageContent(array) {
-      for (const entry of array.data) {
-        const element = document.querySelector(".message-container");
-        element.innerHTML += `
+    promise.catch(console.error());
+
+    function getLastMessageContent(array) {
+      const currentArray = array.data
+
+      let difference = currentArray.filter((x) => !lastArray.includes(x));
+
+      if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
+        for (const entry of difference) {
+          element.innerHTML += `
             <section class="${entry.type}">
               <p class="time-sent">${entry.time}</p>
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
-          `;
+            `;
+
+          lastArray = currentArray;
+
+          console.log("repetindo");
+        }
+      } else {
+        null;
       }
     }
-  } else {
-    null;
+
+    element.lastElementChild.scrollIntoView();
   }
 }
 
@@ -105,5 +145,7 @@ messageAdress.addEventListener("keypress", function (event) {
   }
 });
 
+messageHistory();
+
 setInterval(userStatus, 5000);
-setInterval(messageHistory, 3000);
+setInterval(messageHistoryUpdate, 3000);
