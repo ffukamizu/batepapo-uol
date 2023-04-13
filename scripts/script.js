@@ -51,6 +51,8 @@ function logIn() {
 }
 
 function resetLogIn() {
+  intervalCancel();
+
   window.location.reload();
 }
 
@@ -89,6 +91,8 @@ function messageHistory() {
 
   promise.then(getMessageContent);
 
+  promise.catch();
+
   function getMessageContent(array) {
     lastArray = array.data;
 
@@ -111,6 +115,8 @@ function messageHistoryUpdate() {
   const promise = axios.get(apiMsg);
 
   promise.then(getLastMessageContent);
+
+  promise.catch();
 
   function getLastMessageContent(array) {
     const currentArray = array.data;
