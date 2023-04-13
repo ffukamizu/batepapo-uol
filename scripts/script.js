@@ -66,7 +66,7 @@ function userStatus() {
 
 function intervalUpdates() {
   statusUpdate = setInterval(userStatus, 4000);
-  msgUpdate = setInterval(messageHistoryUpdate, 3000);
+  msgUpdate = setInterval(messageHistoryUpdate, 50);
 }
 
 function intervalCancel() {
@@ -91,8 +91,6 @@ function messageHistory() {
 
   promise.then(getMessageContent);
 
-  promise.catch(console.log(promise));
-
   function getMessageContent(array) {
     lastArray = array.data;
 
@@ -116,14 +114,14 @@ function messageHistoryUpdate() {
 
   promise.then(getLastMessageContent);
 
-  promise.catch(console.log(promise));
-
   function getLastMessageContent(array) {
     const currentArray = array.data;
 
-    const difference = currentArray.filter((x) => !lastArray.includes(x));
+    const difference = currentArray.splice(99,100);
 
     if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
+      console.log(difference);
+      
       for (const entry of difference) {
         element.innerHTML += `
             <section class="${entry.type}" data-test="message">
