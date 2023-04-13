@@ -82,7 +82,6 @@ function messageHistory() {
               <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
             </section>
           `;
-        // element.lastChild.scrollIntoView();
       }
     }
   } else {
@@ -107,4 +106,4 @@ messageAdress.addEventListener("keypress", function (event) {
 });
 
 setInterval(userStatus, 5000);
-setInterval(messageHistory, 3000);
+setInterval(messageHistory, 10000);
