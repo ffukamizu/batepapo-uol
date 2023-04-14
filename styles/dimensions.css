@@ -129,7 +129,7 @@ input:focus {
   outline: none;
 }
 
-::-webkit-scrollbar {
+main::-webkit-scrollbar {
   display: none;
 }
 
