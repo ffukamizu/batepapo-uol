@@ -64,7 +64,7 @@ function userStatus() {
 
   const promise = axios.post(apiStatus, name);
 
-  promise.catch(intervalCancel);
+  promise.catch(resetLogIn);
 }
 
 function messageUser() {
