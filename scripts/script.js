@@ -1,6 +1,11 @@
 let userName, lastArray, lastUserArray, statusUpdate, userUpdate, msgUpdate;
+
 let userNameFriend = "Todos";
 let msgType = "message";
+
+let lastType, lastUser;
+let checkUser = false;
+let checkType = false;
 
 const userNameAdress = document.getElementById("user-name");
 const messageAdress = document.getElementById("user-text");
@@ -78,15 +83,63 @@ function messageUser() {
 }
 
 function messageDestination(id, element) {
-  element.childNodes[4].classList.toggle("checkmark-display");
-
   userNameFriend = String(id);
+
+  if (checkUser === false && lastUser === undefined) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    checkUser = true;
+
+    lastUser = element;
+  } else if (checkUser === true && element !== lastUser) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    lastUser.childNodes[4].classList.remove("checkmark-display");
+
+    checkUser = false;
+
+    lastUser = element;
+  } else if (checkUser === false && element !== lastUser) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    lastUser.childNodes[4].classList.remove("checkmark-display");
+
+    checkUser = true;
+
+    lastUser = element;
+  } else {
+    null;
+  }
 }
 
 function messageType(id, element) {
-  element.childNodes[4].classList.toggle("checkmark-display");
-
   msgType = String(id);
+
+  if (checkType === false && lastType === undefined) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    checkType = true;
+
+    lastType = element;
+  } else if (checkType === true && element !== lastType) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    lastType.childNodes[4].classList.remove("checkmark-display");
+
+    checkType = false;
+
+    lastType = element;
+  } else if (checkType === false && element !== lastType) {
+    element.childNodes[4].classList.add("checkmark-display");
+
+    lastType.childNodes[4].classList.remove("checkmark-display");
+
+    checkType = true;
+
+    lastType = element;
+  } else {
+    null;
+  }
 }
 
 function messageHistory() {
