@@ -41,6 +41,7 @@ function logIn() {
   promise.then(messageHistory);
   promise.then(userList);
   promise.then(intervalUpdates);
+  promise.then(messageRecipient);
 
   promise.catch(welcomeScreenError);
 
