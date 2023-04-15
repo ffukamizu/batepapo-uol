@@ -20,7 +20,7 @@
         <button onclick="sideMenu()" data-test="open-participants"><ion-icon name="people"></ion-icon></button>
       </div>
     </header>
-    <aside class="welcome-screen">
+    <aside class="welcome-screen welcome-screen-display">
       <div><img src="images/logo.png" alt="Batepapo UOL" /></div>
       <div class="input-name"><input id="user-name" type="text" placeholder="Digite seu nome" data-test="input-name" /></div>
       <div class="enter-button"><button id="user-name-button" onclick="logIn()" data-test="send-name">Entrar</button></div>
@@ -37,13 +37,13 @@
           <p>Escolha a visibilidade:</p>
         </div>
         <nav class="contact-selection">
-          <div data-test="public">
+          <div onclick="messageType('message', this)" data-test="public">
             <ion-icon name="lock-open"></ion-icon><button>Público</button>
-            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+            <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
           </div>
-          <div data-test="private">
+          <div onclick="messageType('private_message', this)" data-test="private">
             <ion-icon name="lock-closed"></ion-icon><button>Reservadamente</button>
-            <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+            <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
           </div>
         </nav>
       </div>

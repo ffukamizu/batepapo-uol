@@ -1,4 +1,6 @@
-let userName, lastArray, lasUserArray, statusUpdate, userUpdate, msgUpdate;
+let userName, lastArray, lastUserArray, statusUpdate, userUpdate, msgUpdate;
+let userNameFriend = "Todos";
+let msgType = "message";
 
 const userNameAdress = document.getElementById("user-name");
 const messageAdress = document.getElementById("user-text");
@@ -68,132 +70,142 @@ function userStatus() {
 function messageUser() {
   const message = String(messageAdress.value);
 
-  const textToBeSent = new Message(userName, "Todos", message, "message");
+  const textToBeSent = new Message(userName, userNameFriend, message, msgType);
 
   textToBeSent.sendToServer();
 
   document.getElementById("user-text").value = "";
 }
 
-function messageHistory() {
-  const element = document.querySelector(".message-container");
+function messageDestination(id, element) {
+  element.childNodes[4].classList.toggle("checkmark-display");
 
+  userNameFriend = String(id);
+}
+
+function messageType(id, element) {
+  element.childNodes[4].classList.toggle("checkmark-display");
+
+  msgType = String(id);
+}
+
+function messageHistory() {
   const promise = axios.get(apiMsg);
 
   promise.then(getMessageContent);
+}
 
-  function getMessageContent(array) {
-    lastArray = array.data;
+function getMessageContent(array) {
+  const element = document.querySelector(".message-container");
 
-    for (const entry of array.data) {
-      element.innerHTML += `
+  lastArray = array.data;
+
+  for (const entry of array.data) {
+    element.innerHTML += `
       <li class="${entry.type}" data-test="message">
         <p class="time-sent">(${entry.time})</p>
         <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
       </li>
       `;
-    }
-
-    element.lastElementChild.scrollIntoView();
   }
-}
 
-function messageDestination(userId) {
-  console.log(userId);
+  element.lastElementChild.scrollIntoView();
 }
 
 function messageHistoryUpdate() {
-  const element = document.querySelector(".message-container");
-
   const promise = axios.get(apiMsg);
 
-  promise.then(getLastMessageContent);
+  promise.then(getLastMessageContentUpdate);
+}
 
-  function getLastMessageContent(array) {
-    const currentArray = array.data;
+function getLastMessageContentUpdate(array) {
+  const element = document.querySelector(".message-container");
 
-    if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
-      element.innerHTML = "";
+  const currentArray = array.data;
 
-      for (const entry of currentArray) {
-        element.innerHTML += `
+  if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
+    element.innerHTML = "";
+
+    for (const entry of currentArray) {
+      element.innerHTML += `
         <li class="${entry.type}" data-test="message">
           <p class="time-sent">(${entry.time})</p>
           <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
         </li>
         `;
-      }
-
-      lastArray = currentArray;
-    } else {
-      null;
     }
 
-    element.lastElementChild.scrollIntoView();
+    lastArray = currentArray;
+  } else {
+    null;
   }
+
+  element.lastElementChild.scrollIntoView();
 }
 
 function userList() {
-  const element = document.querySelector("#user-list");
-
   const promise = axios.get(apiUser);
 
   promise.then(getUserList);
+}
 
-  function getUserList(array) {
-    element.innerHTML = ` 
-      <div class="contact-selection" onclick="messageDestination('Todos')" data-test="all">
+function getUserList(array) {
+  const element = document.querySelector("#user-list");
+
+  lastUserArray = array.data;
+
+  element.innerHTML = ` 
+      <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
         <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
       </div>`;
 
-    for (const entry of array.data) {
-      element.innerHTML += `
-      <div onclick="messageDestination('${entry.name}')" data-test="participant">
+  for (const entry of array.data) {
+    element.innerHTML += `
+      <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
         <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
-        <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
       </div>
       `;
-    }
   }
 }
 
 function userListUpdate() {
-  const element = document.querySelector("#user-list");
-
   const promise = axios.get(apiUser);
 
-  promise.then(getUserList);
+  promise.then(getUserListUpdate);
+}
 
-  function getUserList(array) {
-    if (JSON.stringify(lastUserArray) !== JSON.stringify(array.data)) {
-      const currentArray = array.data;
+function getUserListUpdate(array) {
+  const element = document.querySelector("#user-list");
 
-      element.innerHTML = ` 
-      <div class="contact-selection" onclick="messageDestination('Todos')" data-test="all">
+  if (JSON.stringify(lastUserArray) !== JSON.stringify(array.data)) {
+    const currentArray = array.data;
+
+    element.innerHTML = ` 
+      <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
         <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
       </div>
       `;
 
-      for (const entry of currentArray) {
-        element.innerHTML += `
-        <div onclick="messageDestination('${entry.name}')" data-test="participant">
+    for (const entry of currentArray) {
+      element.innerHTML += `
+        <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
           <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
-          <div class="checkmark checkmark-hide"><ion-icon name="checkmark-outline"></ion-icon></div>
+          <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
         </div>
         `;
-      }
-
-      lastUserArray = currentArray;
-    } else {
-      null;
     }
+
+    lastUserArray = currentArray;
+  } else {
+    null;
   }
 }
 
 function welcomeScreen() {
-  document.querySelector(".welcome-screen").classList.add("welcome-screen-display");
+  document.querySelector(".welcome-screen").classList.remove("welcome-screen-display");
 }
 
 function welcomeScreenError() {

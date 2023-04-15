@@ -87,15 +87,16 @@
   background-color: #ffffff;
 }
 
-.contact-selection .checkmark {
+.checkmark {
   right: 0px;
   font-size: 15px;
   color: #28bb25;
   position: absolute;
+  opacity: 0;
 }
 
-.checkmark-hide {
-  opacity: 0;
+.checkmark-display {
+  opacity: 1;
 }
 
 nav ion-icon {
