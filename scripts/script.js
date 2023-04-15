@@ -177,9 +177,9 @@ function messageHistory() {
 }
 
 function getMessageContent(array) {
-  const element = document.querySelector(".message-container");
-
   lastArray = array.data;
+
+  const element = document.querySelector(".message-container");
 
   for (const entry of array.data) {
     if (entry.type === "private_message" && entry.to !== userName && entry.from !== userName) {
@@ -206,9 +206,9 @@ function messageHistoryUpdate() {
 function getLastMessageContentUpdate(array) {
   const element = document.querySelector(".message-container");
 
-  const currentArray = array.data;
-
   if (JSON.stringify(lastArray) !== JSON.stringify(array.data)) {
+    const currentArray = array.data;
+
     element.innerHTML = "";
 
     for (const entry of currentArray) {
@@ -239,9 +239,9 @@ function userList() {
 }
 
 function getUserList(array) {
-  const element = document.querySelector("#user-list");
-
   lastUserArray = array.data;
+
+  const element = document.querySelector("#user-list");
 
   for (const entry of array.data) {
     element.innerHTML += `
@@ -260,10 +260,12 @@ function userListUpdate() {
 }
 
 function getUserListUpdate(array) {
-  const element = document.querySelector("#user-list");
-
   if (JSON.stringify(lastUserArray) !== JSON.stringify(array.data)) {
     const currentArray = array.data;
+    
+    const element = document.querySelector("#user-list");
+
+    element.innerHTML = "";
 
     for (const entry of currentArray) {
       element.innerHTML += `
