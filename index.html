@@ -32,14 +32,20 @@
         <div class="menu-title-space">
           <p>Escolha um contato para enviar mensagem:</p>
         </div>
+        <nav class="contact-selection">
+          <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
+            <ion-icon name="people"></ion-icon><button>Todos</button>
+            <div class="checkmark checkmark-display"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+          </div>
+        </nav>
         <nav id="user-list" class="contact-selection"></nav>
         <div class="menu-title-space">
           <p>Escolha a visibilidade:</p>
         </div>
-        <nav class="contact-selection">
+        <nav class="type-selection">
           <div onclick="messageType('message', this)" data-test="public">
             <ion-icon name="lock-open"></ion-icon><button>Público</button>
-            <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+            <div class="checkmark checkmark-display"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
           </div>
           <div onclick="messageType('private_message', this)" data-test="private">
             <ion-icon name="lock-closed"></ion-icon><button>Reservadamente</button>
@@ -54,7 +60,10 @@
       <div class="bottom-spacer"></div>
     </main>
     <footer class="bottom-text-box">
-      <div class="input-text"><input id="user-text" type="text" placeholder="Escreva aqui..." data-test="input-message" /></div>
+      <div class="input-text">
+        <input id="user-text" type="text" placeholder="Escreva aqui..." data-test="input-message" />
+        <div class="recipient" data-test="recipient"></div>
+      </div>
       <div class="send-button">
         <button id="send-text-button" onclick="messageUser()" data-test="send-message"><ion-icon name="paper-plane-outline"></ion-icon></button>
       </div>

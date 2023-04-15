@@ -87,6 +87,19 @@
   background-color: #ffffff;
 }
 
+.type-selection button {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin-inline: 8px;
+  border-style: solid;
+  border-color: #ffffff;
+  background-color: #ffffff;
+}
+
 .checkmark {
   right: 0px;
   font-size: 15px;
@@ -130,7 +143,7 @@ input:focus {
   outline: none;
 }
 
-main::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
 

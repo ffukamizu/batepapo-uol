@@ -3,7 +3,8 @@ let userName, lastArray, lastUserArray, statusUpdate, userUpdate, msgUpdate;
 let userNameFriend = "Todos";
 let msgType = "message";
 
-let lastType, lastUser;
+let lastUser = document.querySelector(".contact-selection").childNodes[1];
+let lastType = document.querySelector(".type-selection").childNodes[1];
 let checkUser = false;
 let checkType = false;
 
@@ -91,6 +92,8 @@ function messageDestination(id, element) {
     checkUser = true;
 
     lastUser = element;
+
+    messageRecipient();
   } else if (checkUser === true && element !== lastUser) {
     element.childNodes[4].classList.add("checkmark-display");
 
@@ -99,6 +102,8 @@ function messageDestination(id, element) {
     checkUser = false;
 
     lastUser = element;
+
+    messageRecipient();
   } else if (checkUser === false && element !== lastUser) {
     element.childNodes[4].classList.add("checkmark-display");
 
@@ -107,6 +112,8 @@ function messageDestination(id, element) {
     checkUser = true;
 
     lastUser = element;
+
+    messageRecipient();
   } else {
     null;
   }
@@ -121,6 +128,8 @@ function messageType(id, element) {
     checkType = true;
 
     lastType = element;
+
+    messageRecipient();
   } else if (checkType === true && element !== lastType) {
     element.childNodes[4].classList.add("checkmark-display");
 
@@ -129,6 +138,8 @@ function messageType(id, element) {
     checkType = false;
 
     lastType = element;
+
+    messageRecipient();
   } else if (checkType === false && element !== lastType) {
     element.childNodes[4].classList.add("checkmark-display");
 
@@ -137,8 +148,25 @@ function messageType(id, element) {
     checkType = true;
 
     lastType = element;
+
+    messageRecipient();
   } else {
     null;
+  }
+}
+
+function messageRecipient() {
+  const element = document.querySelector(".recipient");
+
+  switch (msgType) {
+    case "message":
+      element.innerHTML = `Enviando mensagem para ${lastUser.innerText}`;
+
+      break;
+    case "private_message":
+      element.innerHTML = `Enviando mensagem para ${lastUser.innerText} (Reservadamente)`;
+
+      break;
   }
 }
 
@@ -215,12 +243,6 @@ function getUserList(array) {
 
   lastUserArray = array.data;
 
-  element.innerHTML = ` 
-      <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
-        <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
-      </div>`;
-
   for (const entry of array.data) {
     element.innerHTML += `
       <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
@@ -242,13 +264,6 @@ function getUserListUpdate(array) {
 
   if (JSON.stringify(lastUserArray) !== JSON.stringify(array.data)) {
     const currentArray = array.data;
-
-    element.innerHTML = ` 
-      <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
-        <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
-      </div>
-      `;
 
     for (const entry of currentArray) {
       element.innerHTML += `

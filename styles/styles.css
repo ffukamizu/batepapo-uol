@@ -70,6 +70,22 @@
   width: 100%;
 }
 
+.recipient {
+  height: 23px;
+  width: 100%;
+  bottom: 5px;
+  left: 5px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 25px;
+  color: #aaaaaa;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  position: absolute;
+}
+
 .backdrop {
   height: 100%;
   width: 100%;
@@ -108,6 +124,15 @@
 }
 
 .contact-selection div {
+  height: 36px;
+  margin-inline: 18px;
+  font-size: 22px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.type-selection div {
   height: 36px;
   margin-inline: 18px;
   font-size: 22px;
