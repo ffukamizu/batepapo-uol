@@ -218,14 +218,14 @@ function getUserList(array) {
   element.innerHTML = ` 
       <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
         <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
       </div>`;
 
   for (const entry of array.data) {
     element.innerHTML += `
       <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
         <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
       </div>
       `;
   }
@@ -246,7 +246,7 @@ function getUserListUpdate(array) {
     element.innerHTML = ` 
       <div class="contact-selection" onclick="messageDestination('Todos', this)" data-test="all">
         <ion-icon name="people"></ion-icon><button>Todos</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
+        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
       </div>
       `;
 
@@ -254,7 +254,7 @@ function getUserListUpdate(array) {
       element.innerHTML += `
         <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
           <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
-          <div class="checkmark"><ion-icon name="checkmark-outline"></ion-icon></div>
+          <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
         </div>
         `;
     }
