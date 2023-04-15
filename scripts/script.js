@@ -101,12 +101,16 @@ function getMessageContent(array) {
   lastArray = array.data;
 
   for (const entry of array.data) {
-    element.innerHTML += `
+    if (entry.type === "private_message" && entry.to !== userName && entry.from !== userName) {
+      null;
+    } else {
+      element.innerHTML += `
       <li class="${entry.type}" data-test="message">
         <p class="time-sent">(${entry.time})</p>
         <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
       </li>
       `;
+    }
   }
 
   element.lastElementChild.scrollIntoView();
@@ -127,12 +131,16 @@ function getLastMessageContentUpdate(array) {
     element.innerHTML = "";
 
     for (const entry of currentArray) {
-      element.innerHTML += `
-        <li class="${entry.type}" data-test="message">
-          <p class="time-sent">(${entry.time})</p>
-          <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
-        </li>
-        `;
+      if (entry.type === "private_message" && entry.to !== userName && entry.from !== userName) {
+        null;
+      } else {
+        element.innerHTML += `
+      <li class="${entry.type}" data-test="message">
+        <p class="time-sent">(${entry.time})</p>
+        <p class="user-message">${entry.from} para ${entry.to}: ${entry.text}</p>
+      </li>
+      `;
+      }
     }
 
     lastArray = currentArray;
