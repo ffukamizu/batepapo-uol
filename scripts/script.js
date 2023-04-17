@@ -87,33 +87,29 @@ function messageUser() {
 function messageDestination(id, element) {
   userNameFriend = String(id);
 
-  if (checkUser === false && lastUser === undefined) {
-    element.childNodes[4].classList.add("checkmark-display");
-
-    checkUser = true;
-
-    lastUser = element;
-
-    messageRecipient();
-  } else if (checkUser === true && element !== lastUser) {
+  if (checkUser === true && element !== lastUser) {
     element.childNodes[4].classList.add("checkmark-display");
 
     lastUser.childNodes[4].classList.remove("checkmark-display");
 
+    lastUser = element; 
+    
+    userList();
+    
     checkUser = false;
-
-    lastUser = element;
-
+    
     messageRecipient();
   } else if (checkUser === false && element !== lastUser) {
     element.childNodes[4].classList.add("checkmark-display");
 
     lastUser.childNodes[4].classList.remove("checkmark-display");
 
-    checkUser = true;
-
     lastUser = element;
-
+    
+    userList();
+    
+    checkUser = true;
+    
     messageRecipient();
   } else {
     null;
@@ -123,15 +119,7 @@ function messageDestination(id, element) {
 function messageType(id, element) {
   msgType = String(id);
 
-  if (checkType === false && lastType === undefined) {
-    element.childNodes[4].classList.add("checkmark-display");
-
-    checkType = true;
-
-    lastType = element;
-
-    messageRecipient();
-  } else if (checkType === true && element !== lastType) {
+  if (checkType === true && element !== lastType) {
     element.childNodes[4].classList.add("checkmark-display");
 
     lastType.childNodes[4].classList.remove("checkmark-display");
@@ -244,13 +232,24 @@ function getUserList(array) {
 
   const element = document.querySelector("#user-list");
 
+  element.innerHTML = "";
+
   for (const entry of array.data) {
-    element.innerHTML += `
-      <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
-        <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
-        <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
-      </div>
-      `;
+    if (entry.name !== lastUser.innerText.trim()) {
+      element.innerHTML += `
+        <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
+          <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
+          <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+        </div>
+        `;
+    } else {
+      element.innerHTML += `
+        <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
+          <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
+          <div class="checkmark checkmark-display"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+        </div>
+        `;
+    }
   }
 }
 
@@ -263,18 +262,27 @@ function userListUpdate() {
 function getUserListUpdate(array) {
   if (JSON.stringify(lastUserArray) !== JSON.stringify(array.data)) {
     const currentArray = array.data;
-    
+
     const element = document.querySelector("#user-list");
 
     element.innerHTML = "";
 
     for (const entry of currentArray) {
-      element.innerHTML += `
+      if (entry.name !== lastUser.innerText.trim()) {
+        element.innerHTML += `
         <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
           <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
           <div class="checkmark"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
         </div>
         `;
+      } else {
+        element.innerHTML += `
+        <div onclick="messageDestination('${entry.name}', this)" data-test="participant">
+          <ion-icon name="person-circle"></ion-icon><button>${entry.name}</button>
+          <div class="checkmark checkmark-display"><ion-icon name="checkmark-outline" data-test="check"></ion-icon></div>
+        </div>
+        `;
+      }
     }
 
     lastUserArray = currentArray;
